@@ -1,0 +1,17 @@
+{
+  "name": "spotermfy",
+  "version": "0.1.0",
+  "description": "Terminal app connecting your Spotfiy in OSX",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "applescript": "^1.0.0",
+    "async": "^1.5.2",
+    "blessed": "^0.1.81",
+    "lodash": "^4.6.1"
+  }
+}

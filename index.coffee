@@ -1,4 +1,6 @@
 blessed = require 'blessed'
+ 
+config = require './config'
 
 screen = blessed.screen
   smartCSR: true
@@ -6,22 +8,23 @@ screen = blessed.screen
 
 screen.title = 'my window title'
 
-#box = blessed.box
-  #top: 'center'
-  #left: 'center'
-  #width: '50%'
-  #height: '50%'
-  #content: 'Hello {bold}world{/bold}!'
-  #tags: true
-
+divider = blessed.line
+  bottom: config.playerHeight
+  orientation: 'horizontal'
 
 browser = require('./components/browser')(screen)
 player = require('./components/player')(screen)
 
-screen.append(browser)
+#screen.append(browser)
+screen.append(divider)
 screen.append(player)
 
 screen.key ['escape', 'C-c'], (ch, key) ->
   process.exit(0)
 
 screen.render()
+
+#browser._focusSearch()
+
+screen.key ['f'], ->
+  browser._focusSearch()

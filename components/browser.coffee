@@ -33,7 +33,6 @@ module.exports = (screen) ->
     left: config.bookmarkWidth
     orientation: 'vertical'
 
-
   searchBrowser = blessed.box
     parent: browser
     top: 0
@@ -41,11 +40,23 @@ module.exports = (screen) ->
     width: "100%-#{config.bookmarkWidth + 4}"
     height: '100%'
 
+  searchHeader = blessed.box
+    parent: searchBrowser
+    height: 1
+    width: '100%'
+    top: 3
+    left: 0
+    tags: true
+
+  searchHeader.updateContent = (content) ->
+    searchHeader.setContent "{center}#{content}{/}"
+    screen.render()
+
   searchResult = blessed.list
     parent: searchBrowser
-    height: "100%-5"
+    height: "100%-6"
     width: "100%"
-    top: 3
+    top: 4
     right: 0
     vi: true
     keys: true
@@ -70,8 +81,6 @@ module.exports = (screen) ->
     play uri, (err, result) ->
       return if err
 
-    
-
   searchInput = blessed.textbox
     parent: searchBrowser
     left: 0
@@ -79,12 +88,15 @@ module.exports = (screen) ->
     width: '100%'
     height: 3
     inputOnFocus: true
+    tags: true
     border:
       type: 'line'
 
   searchInput.on 'submit', (keyword) ->
+    searchHeader.updateContent 'Loading...'
     search keyword, (err, results) ->
       return if err
+      searchHeader.updateContent "Search result of '#{keyword}'"
       searchInput.clearValue()
       searchResult.setItems(_.map(results, resultToString))
       searchResult._results = results

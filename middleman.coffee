@@ -44,6 +44,10 @@ module.exports.toggleShuffle = (cb) ->
   command = 'tell application "Spotify" to set shuffling to not shuffling'
   applescript.execString command, cb
 
+module.exports.play = (uri, cb) ->
+  command = 'tell application "Spotify" to play track "' + uri + '"'
+  applescript.execString command, cb
+
 #current (err, results) ->
   #console.log err
   #console.log results

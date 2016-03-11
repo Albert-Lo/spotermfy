@@ -88,7 +88,7 @@ module.exports = (screen) ->
       return if err
       state = setState(state, newState)
       updateContent state
-  , 250
+  , 500
 
   updateContent = (state) ->
     newContent = "#{state.track}\n#{state.artist}\n#{state.album}\n"
@@ -131,8 +131,6 @@ module.exports = (screen) ->
         newState.repeating = 'true'
       state = setState(state, newState)
       updateContent state
-
-
 
   setState = (state, newState) ->
     _.assign state, _.pickBy(newState, (item) -> item)

@@ -1,5 +1,5 @@
 config =
-  primary: '#19d648'
+  primary: '#148532'
   playerHeight: 6
   bookmarkWidth: 30
 
